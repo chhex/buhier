@@ -1,0 +1,10 @@
+ch/helm/model/Sektion.class
+ch/helm/db/Mitarbeiters.class
+ch/helm/model/Abteilung.class
+ch/helm/model/Team.class
+ch/helm/db/MitarbeiterDb.class
+ch/helm/db/OeDb.class
+ch/helm/model/Mitarbeiter.class
+ch/helm/db/OEs.class
+ch/helm/model/OrgEinheit.class
+ch/helm/model/AbstractOE.class
