@@ -4,18 +4,37 @@ public class Mitarbeiter {
 
     private String vorName;
     private String nachHame;
+    private Integer lohn;
+
+    public Mitarbeiter(String vorName, String nachHame) {
+        this.vorName = vorName;
+        this.nachHame = nachHame;
+    }
+
     public String getVorName() {
         return vorName;
     }
+
     public void setVorName(String vorName) {
         this.vorName = vorName;
     }
+
     public String getNachHame() {
         return nachHame;
     }
+
     public void setNachHame(String nachHame) {
         this.nachHame = nachHame;
     }
+
+    public Integer getLohn() {
+        return lohn;
+    }
+
+    public void setLohn(Integer lohn) {
+        this.lohn = lohn;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -24,6 +43,7 @@ public class Mitarbeiter {
         result = prime * result + ((nachHame == null) ? 0 : nachHame.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -39,16 +59,14 @@ public class Mitarbeiter {
         } else if (!vorName.equals(other.vorName))
             return false;
         if (nachHame == null) {
-            if (other.nachHame != null)
-                return false;
-        } else if (!nachHame.equals(other.nachHame))
-            return false;
-        return true;
+            return other.nachHame == null;
+        } else return nachHame.equals(other.nachHame);
     }
+
     @Override
     public String toString() {
         return "Mitarbeiter [vorName=" + vorName + ", nachHame=" + nachHame + "]";
-    } 
-    
+    }
+
 
 }

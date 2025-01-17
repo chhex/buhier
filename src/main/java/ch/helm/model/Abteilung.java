@@ -2,6 +2,10 @@ package ch.helm.model;
 
 public class Abteilung extends AbstractOE {
 
+    public Abteilung(String name) {
+        super(name);
+    }
+
     @Override
     public void addUnterGeordneteEinheit(OrgEinheit orgEinheit) {
         if (!(orgEinheit instanceof Sektion)) {
@@ -12,7 +16,7 @@ public class Abteilung extends AbstractOE {
     }
 
     @Override
-    public void setUeberGeordneteEinheit(OrgEinheit orgEinheit) {
+    public void setUeberGeordneteEinheit(AbstractOE orgEinheit) {
         throw new RuntimeException(String.format("Ein Abteilung kann keine Uebergeordnete OE: %s haben",
                 orgEinheit.toString()));
     }

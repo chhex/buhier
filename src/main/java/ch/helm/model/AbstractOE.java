@@ -1,5 +1,6 @@
 package ch.helm.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -7,9 +8,13 @@ public abstract class AbstractOE implements OrgEinheit {
 
     private String name;
     private OrgEinheit ueberGeordneteEinheit;
-    private List<OrgEinheit> unterGeordneteEinheiten;
+    private final List<OrgEinheit> unterGeordneteEinheiten = new ArrayList<>();
     private Mitarbeiter chef;
-    private List<Mitarbeiter> mitarbeiters;
+    private final List<Mitarbeiter> mitarbeiters = new ArrayList<>();
+
+    public AbstractOE(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
@@ -23,7 +28,7 @@ public abstract class AbstractOE implements OrgEinheit {
     public void addMitarbeiter(Mitarbeiter mitarbeiter) {
         if (isMitarbeiterVonOE(mitarbeiter)) {
             throw new RuntimeException(String.format("Mitarbieter : <%s> existiert bereits in OE: %s",
-                    mitarbeiter.toString(), this.toString()));
+                    mitarbeiter.toString(), this));
         }
         mitarbeiters.add(mitarbeiter);
     }
@@ -32,7 +37,7 @@ public abstract class AbstractOE implements OrgEinheit {
     public void removeMitarbeiter(Mitarbeiter mitarbeiter) {
         if (isNotMitarbeiterVonOE(mitarbeiter)) {
             throw new RuntimeException(String.format("Mitarbieter : <%s> arbeitet nicht in OE: %s",
-                    mitarbeiter.toString(), this.toString()));
+                    mitarbeiter.toString(), this));
         }
         mitarbeiters.remove(mitarbeiter);
 
@@ -40,10 +45,10 @@ public abstract class AbstractOE implements OrgEinheit {
 
     @Override
     public boolean isMitarbeiterVonOE(Mitarbeiter mitarbeiter) {
-        if (mitarbeiters.contains(mitarbeiter)) {
+        if (isChefVonOE(mitarbeiter)) {
             return true;
         }
-        return false;
+        return mitarbeiters.contains(mitarbeiter);
     }
 
     @Override
@@ -53,27 +58,16 @@ public abstract class AbstractOE implements OrgEinheit {
 
     @Override
     public void addUnterGeordneteEinheit(OrgEinheit orgEinheit) {
-        if (!isUeberGeordneteOE(orgEinheit)) {
-            throw new RuntimeException(String.format("OE : <%s> ist uebergeordnete OE von dieser OE: %s",
-                    orgEinheit.toString(), this.toString()));
-        }
+        AbstractOE abstractOE = (AbstractOE) orgEinheit;
         if (isUnterGeordneteOE(orgEinheit)) {
             throw new RuntimeException(String.format("OE : <%s> ist bereits untergeortnete OE von dieser OE: %s",
-                    orgEinheit.toString(), this.toString()));
+                    orgEinheit.toString(), this));
         }
+        abstractOE.setUeberGeordneteEinheit(this);
         unterGeordneteEinheiten.add(orgEinheit);
     }
 
-    @Override
-    public void setUeberGeordneteEinheit(OrgEinheit orgEinheit) {
-        if (isUeberGeordneteOE(orgEinheit)) {
-            throw new RuntimeException(String.format("OE : <%s> ist bereits uebergeordnete OE von dieser OE: %s",
-                    orgEinheit.toString(), this.toString()));
-        }
-        if (isUnterGeordneteOE(orgEinheit)) {
-            throw new RuntimeException(String.format("OE : <%s> ist untergeortnete OE von dieser OE: %s",
-                    orgEinheit.toString(), this.toString()));
-        }
+    public void setUeberGeordneteEinheit(AbstractOE orgEinheit) {
         ueberGeordneteEinheit = orgEinheit;
     }
 
@@ -106,26 +100,17 @@ public abstract class AbstractOE implements OrgEinheit {
 
     @Override
     public boolean isChefVonOE(Mitarbeiter mitarbeiter) {
-        if (chef != null && chef.equals(mitarbeiter)) {
-            return true;
-        }
-        return false;
+        return chef != null && chef.equals(mitarbeiter);
     }
 
     @Override
     public boolean isUeberGeordneteOE(OrgEinheit einheit) {
-        if (ueberGeordneteEinheit != null && ueberGeordneteEinheit.equals(einheit)) {
-            return true;
-        }
-        return false;
+        return ueberGeordneteEinheit != null && ueberGeordneteEinheit.equals(einheit);
     }
 
     @Override
     public boolean isUnterGeordneteOE(OrgEinheit einheit) {
-        if (unterGeordneteEinheiten.contains(einheit)) {
-            return true;
-        }
-        return false;
+        return unterGeordneteEinheiten.contains(einheit);
     }
 
     @Override
@@ -139,7 +124,7 @@ public abstract class AbstractOE implements OrgEinheit {
     public void removeUnterGeordneteEinheit(OrgEinheit orgEinheit) {
         if (!isUnterGeordneteOE(orgEinheit)) {
             throw new RuntimeException(String.format("OE : <%s> ist nicht untergeortnete OE von dieser OE: %s",
-                    orgEinheit.toString(), this.toString()));
+                    orgEinheit.toString(), this));
         }
         unterGeordneteEinheiten.remove(orgEinheit); 
     }

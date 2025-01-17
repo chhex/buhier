@@ -8,9 +8,9 @@ import ch.helm.model.Mitarbeiter;
 
 public class Mitarbeiters implements MitarbeiterDb {
 
-    public static Mitarbeiters DB = new Mitarbeiters();
+    public static final Mitarbeiters DB = new Mitarbeiters();
 
-    private List<Mitarbeiter> mitarbeiters = new ArrayList<Mitarbeiter>(); 
+    private final List<Mitarbeiter> mitarbeiters = new ArrayList<>();
 
     private Mitarbeiters() {
     }
@@ -18,7 +18,7 @@ public class Mitarbeiters implements MitarbeiterDb {
     @Override
     public void addMitarbeiter(Mitarbeiter mitarbeiter) {
         if (existsMitarbeiter(mitarbeiter)) {
-            throw new RuntimeException(String.format("Mitarbieter : <%s> already exists", mitarbeiter.toString()));
+            throw new RuntimeException(String.format("Mitarbeiter : <%s> already exists", mitarbeiter.toString()));
         } 
         mitarbeiters.add(mitarbeiter); 
     }
@@ -34,11 +34,16 @@ public class Mitarbeiters implements MitarbeiterDb {
     }
 
     @Override
+    public void clear() {
+        mitarbeiters.clear();
+    }
+
+    @Override
     public void removeMitarbeiter(Mitarbeiter mitarbeiter) {
         if (!existsMitarbeiter(mitarbeiter)) {
-            throw new RuntimeException(String.format("Mitarbieter : <%s> doesnt exists", mitarbeiter.toString()));
+            throw new RuntimeException(String.format("Mitarbeitter : <%s> doesnt exists", mitarbeiter.toString()));
         } 
-        mitarbeiters.add(mitarbeiter);
+        mitarbeiters.remove(mitarbeiter);
     }
 
     @Override

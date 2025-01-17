@@ -3,15 +3,13 @@ package ch.helm.db;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import ch.helm.model.Mitarbeiter;
 import ch.helm.model.OrgEinheit;
 
 public class OEs implements OeDb {
 
-    public static OEs DB = new OEs();
+    public static final OEs DB = new OEs();
 
-    private List<OrgEinheit> orgEinheits = new ArrayList<OrgEinheit>();
+    private final List<OrgEinheit> orgEinheits = new ArrayList<>();
 
     private OEs() {
     }
@@ -29,7 +27,7 @@ public class OEs implements OeDb {
         if (!existsOE(oe)) {
             throw new RuntimeException(String.format("OE : <%s> doesnt exists", oe.toString()));
         } 
-        orgEinheits.add(oe);
+        orgEinheits.remove(oe);
     }
 
     @Override
@@ -50,6 +48,11 @@ public class OEs implements OeDb {
     @Override
     public List<OrgEinheit> getOEs() {
        return Collections.unmodifiableList(orgEinheits);
+    }
+
+    @Override
+    public void clear() {
+        orgEinheits.clear();
     }
 
 }
