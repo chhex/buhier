@@ -7,6 +7,7 @@ import java.util.List;
 public abstract class AbstractOE implements OrgEinheit {
 
     private String name;
+    private Integer budget;
     private OrgEinheit ueberGeordneteEinheit;
     private final List<OrgEinheit> unterGeordneteEinheiten = new ArrayList<>();
     private Mitarbeiter chef;
@@ -22,6 +23,14 @@ public abstract class AbstractOE implements OrgEinheit {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Integer budget) {
+        this.budget = budget;
     }
 
     @Override
