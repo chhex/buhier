@@ -176,6 +176,9 @@ class OrgEinheitTest {
         var m3 = new Mitarbeiter("Doris", "Schwab");
         team.addMitarbeiter(m1);
         team.addMitarbeiter(m2);
+        assertEquals(m1.getOrgEinheit(),team);
+        assertEquals(m2.getOrgEinheit(),team);
+        assertNull(m3.getOrgEinheit());
         assertTrue(team.getMitarbeiter().contains(m1));
         assertTrue(team.getMitarbeiter().contains(m2));
         assertFalse(team.getMitarbeiter().contains(m3));
@@ -200,6 +203,7 @@ class OrgEinheitTest {
         assertTrue(team.getMitarbeiter().contains(m1));
         assertTrue(team.getMitarbeiter().contains(m2));
         assertFalse(team.getMitarbeiter().contains(m3));
+        assertNull(m3.getOrgEinheit());
     }
 
     @Test

@@ -6,6 +6,8 @@ public interface OrgEinheit {
 
     String getName();
     void setName(String name);
+    Integer getBudget();
+    void setBudget(Integer budget);
     List<OrgEinheit> getUnterGeordneteEinheiten();
     OrgEinheit getUeberGeordneteEinheit();
     boolean isUeberGeordneteOE(OrgEinheit einheit);

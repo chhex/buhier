@@ -3,6 +3,7 @@ package ch.helm.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class AbstractOE implements OrgEinheit {
 
@@ -40,6 +41,7 @@ public abstract class AbstractOE implements OrgEinheit {
                     mitarbeiter.toString(), this));
         }
         mitarbeiters.add(mitarbeiter);
+        mitarbeiter.setOrgEinheit(this);
     }
 
     @Override
@@ -49,6 +51,8 @@ public abstract class AbstractOE implements OrgEinheit {
                     mitarbeiter.toString(), this));
         }
         mitarbeiters.remove(mitarbeiter);
+        mitarbeiter.setOrgEinheit(null);
+
 
     }
 
@@ -105,6 +109,7 @@ public abstract class AbstractOE implements OrgEinheit {
     public void setChef(Mitarbeiter chef) {
         this.chef = chef;
         mitarbeiters.remove(chef);
+        chef.setOrgEinheit(this);
     }
 
     @Override
@@ -125,7 +130,8 @@ public abstract class AbstractOE implements OrgEinheit {
     @Override
     public Mitarbeiter removeChef() {
         var oldChef = chef; 
-        chef = null; 
+        chef = null;
+        oldChef.setOrgEinheit(null);
         return oldChef; 
     }
 
@@ -138,4 +144,23 @@ public abstract class AbstractOE implements OrgEinheit {
         unterGeordneteEinheiten.remove(orgEinheit); 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractOE that)) return false;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "AbstractOE{" +
+                "name='" + name + '\'' +
+                ", budget=" + budget +
+                '}';
+    }
 }

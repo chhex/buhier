@@ -5,10 +5,19 @@ public class Mitarbeiter {
     private String vorName;
     private String nachHame;
     private Integer lohn;
+    private OrgEinheit orgEinheit;
 
     public Mitarbeiter(String vorName, String nachHame) {
         this.vorName = vorName;
         this.nachHame = nachHame;
+    }
+
+    public OrgEinheit getOrgEinheit() {
+        return orgEinheit;
+    }
+
+    public void setOrgEinheit(OrgEinheit orgEinheit) {
+        this.orgEinheit = orgEinheit;
     }
 
     public String getVorName() {

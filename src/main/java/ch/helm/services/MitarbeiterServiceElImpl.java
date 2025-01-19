@@ -4,11 +4,7 @@ import ch.helm.model.Abteilung;
 import ch.helm.model.Mitarbeiter;
 import ch.helm.model.OrgEinheit;
 
-/**
- * Mitarbeiter Services
- **/
-public interface MitarbeiterService {
-
+public class MitarbeiterServiceElImpl implements  MitarbeiterService {
     /**
      * Kriert ein {@link Mitarbeiter} und speichert diesen in der Datenbank
      *
@@ -16,7 +12,10 @@ public interface MitarbeiterService {
      * @param vorname  Der Vorname des {@link Mitarbeiter}
      * @return ein {@link Mitarbeiter}
      */
-    Mitarbeiter create(String nachName, String vorname);
+    @Override
+    public Mitarbeiter create(String nachName, String vorname) {
+        return null;
+    }
 
     /**
      * Suche {@link Mitarbeiter} mit Vorname und Nachname in der Datenbank
@@ -25,17 +24,21 @@ public interface MitarbeiterService {
      * @param vorname  the vorname
      * @return the mitarbeiter , null wenn nicht gefunden
      */
-    Mitarbeiter suche(String nachName, String vorname);
-
+    @Override
+    public Mitarbeiter suche(String nachName, String vorname) {
+        return null;
+    }
 
     /**
      * Weise {@link Abteilung} aus von {@link Mitarbeiter}.
      *
-     * @param mitarbeiter  {@link Mitarbeiter}
+     * @param mitarbeiter {@link Mitarbeiter}
      * @return the {@link Abteilung} von mitarbeiter, null, wenn {@link Mitarbeiter} nicht angestellt ist
      */
-    Abteilung getAbteilungVonMitarbeiter(Mitarbeiter mitarbeiter);
-
+    @Override
+    public Abteilung getAbteilungVonMitarbeiter(Mitarbeiter mitarbeiter) {
+        return null;
+    }
 
     /**
      * Weise {@link OrgEinheit} aus von {@link Mitarbeiter}.
@@ -43,7 +46,10 @@ public interface MitarbeiterService {
      * @param mitarbeiter {@link Mitarbeiter}
      * @return die  {@link OrgEinheit} des {@link Mitarbeiter}. Null, wenn {@link Mitarbeiter} nicht angestellt ist
      */
-    OrgEinheit getOrgEinheitVonMitarbeiter(Mitarbeiter mitarbeiter);
+    @Override
+    public OrgEinheit getOrgEinheitVonMitarbeiter(Mitarbeiter mitarbeiter) {
+        return null;
+    }
 
     /**
      * Der  {@link Mitarbeiter} wird einer {@link OrgEinheit} zugewiesen.
@@ -56,7 +62,10 @@ public interface MitarbeiterService {
      * @param mitarbeiter der {@link Mitarbeiter}, der anzustellen ist
      * @param oe          , die {@link OrgEinheit}, wo der {@link Mitarbeiter} angestellt wird
      */
-    void anstellen(Mitarbeiter mitarbeiter, OrgEinheit oe);
+    @Override
+    public void anstellen(Mitarbeiter mitarbeiter, OrgEinheit oe) {
+
+    }
 
     /**
      * Einem {@link Mitarbeiter} wird ein Lohn zugewiesen.
@@ -69,7 +78,8 @@ public interface MitarbeiterService {
      * @param lohn        the lohn
      * @return the integer
      */
-    Integer lohn(Mitarbeiter mitarbeiter, Integer lohn);
-
-
+    @Override
+    public Integer lohn(Mitarbeiter mitarbeiter, Integer lohn) {
+        return null;
+    }
 }
