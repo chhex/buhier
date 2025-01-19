@@ -28,7 +28,7 @@ public interface OeServices {
      * Der  {@link OrgEinheit} wird ein Budget zu gewiesen.
      * Es kann mur einer Abteilung ein Budget zu gewiesen werden
      * Das Budget darf nicht kleiner sein als die Summe der Loehne,
-     * aller direkt und indirekt unterstellten {@link Mitarbeiter}
+     * aller bereits direkt und indirekt unterstellten {@link Mitarbeiter}
      * @param oe     the oe
      * @param budget the budget
      */

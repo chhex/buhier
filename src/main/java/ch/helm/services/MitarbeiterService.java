@@ -10,7 +10,7 @@ import ch.helm.model.OrgEinheit;
 public interface MitarbeiterService {
 
     /**
-     * Kriert ein {@link Mitarbeiter} und speichert diesen in der Datenbank
+     * Kreiert ein {@link Mitarbeiter} und speichert diesen in der Datenbank
      *
      * @param nachName Der Nachname des {@link Mitarbeiter}
      * @param vorname  Der Vorname des {@link Mitarbeiter}
