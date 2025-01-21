@@ -1,0 +1,32 @@
+@startuml
+
+skinparam nodesep 60
+
+top to bottom direction
+
+interface OeEinheit
+
+class Mitarbeiter {
+  vorName : String
+  nachName : String
+  lohn : Intger
+}
+
+
+abstract class AbstractOE implements OeEinheit {
+  name : String
+  budget : Integer
+}
+
+AbstractOE "is Chef von " - "0..1" Mitarbeiter
+AbstractOE *-- "isMiarbeiter von"  Mitarbeiter
+AbstractOE *-- "is Untergeordnete" OeEinheit
+
+class Team extends AbstractOE
+class Abteilung extends AbstractOE
+class Sektion extends AbstractOE
+
+
+
+
+@enduml
